@@ -12,11 +12,8 @@ class Customer
   end
 
   def statement
-    frequent_renter_points = 0
     result = "Rental Record for #{@name}\n"
     @rentals.each do |element|
-      frequent_renter_points += element.frequent_renter_points
-
       # show figures for this rental
       result += "\t" + element.movie.title + "\t" + element.charge.to_s + "\n"
     end
@@ -30,5 +27,9 @@ class Customer
 
   def total_charge
     @rentals.inject(0) { |a, e| a + e.charge }
+  end
+
+  def frequent_renter_points
+    @rentals.inject(0) { |a, e| a + e.frequent_renter_points }
   end
 end
